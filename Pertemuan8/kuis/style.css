@@ -1,0 +1,197 @@
+:root {
+  --lime: #bff573;
+  --lime-tua: #aee85c;
+  --teks: #0d0d0d;
+  --redup: #9a9db3;
+  --garis: #cfd2e3;
+  --abu: #efeff5;
+  --error: #d93a3a;
+  --cek: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d0d0d' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --panah: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+  background: linear-gradient(180deg, #e9ecef, #d3d7dd);
+  color: var(--teks);
+  font: 16px/1.5 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.kartu {
+  width: 100%;
+  max-width: 1000px;
+  padding: 36px 32px 32px;
+  background: #fcfcfe;
+  border-radius: 36px;
+  box-shadow: 0 20px 50px rgb(20 30 50 / 0.08);
+}
+
+.label { margin: 0 0 10px; color: var(--redup); font-size: 0.9rem; }
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.deskripsi { margin: 0 0 28px; color: var(--redup); }
+
+form { display: grid; gap: 22px; }
+
+.field { margin: 0; padding: 0; border: 0; min-width: 0; }
+.baris { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+label, legend { display: block; margin: 0 0 8px; padding: 0; font-size: 0.9rem; font-weight: 500; }
+
+/* ---------- input ---------- */
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="file"], select, textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: #fafafd;
+  color: var(--teks);
+  border: 1px solid var(--garis);
+  border-radius: 16px;
+  font: inherit;
+}
+
+textarea { resize: vertical; min-height: 92px; }
+::placeholder { color: var(--redup); }
+
+select {
+  appearance: none;
+  padding-right: 44px;
+  background: #fafafd var(--panah) right 16px center / 20px no-repeat;
+}
+select:invalid { color: var(--redup); }
+
+input[type="file"] { padding: 8px 12px; color: var(--redup); }
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--abu);
+  color: var(--teks);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+:is(input, select, textarea):focus-visible {
+  outline: 2px solid var(--teks);
+  outline-offset: 2px;
+}
+
+.catatan { color: var(--redup); font-weight: 400; font-size: 0.85rem; }
+small.catatan { display: block; margin-top: 6px; }
+
+/* ---------- pill (radio dan checkbox grup) ---------- */
+.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.pill { position: relative; display: inline-flex; margin: 0; font-weight: 400; font-size: 1rem; }
+
+.pill input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.pill span {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  border: 1px solid var(--garis);
+  border-radius: 999px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.pill span::before {
+  content: "";
+  width: 0;
+  height: 22px;
+  margin-right: 0;
+  border-radius: 50%;
+  background: var(--lime) var(--cek) center / 13px no-repeat;
+  transition: width 0.15s, margin-right 0.15s;
+}
+
+.pill input:checked + span { background: #f3f4f9; border-color: #b4b8d0; }
+.pill input:checked + span::before { width: 22px; margin-right: 8px; }
+.pill input:focus-visible + span { outline: 2px solid var(--teks); outline-offset: 2px; }
+
+/* ---------- checkbox persetujuan ---------- */
+.setuju {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  font-weight: 400;
+  color: #555;
+  cursor: pointer;
+}
+
+.setuju input {
+  appearance: none;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  background: #fff;
+  border: 1px solid var(--garis);
+  border-radius: 7px;
+  cursor: pointer;
+}
+.setuju input:checked { background: var(--lime) var(--cek) center / 14px no-repeat; border-color: var(--lime-tua); }
+.setuju input:focus-visible { outline: 2px solid var(--teks); outline-offset: 2px; }
+
+/* ---------- pesan error (CSS saja, lewat :user-invalid) ---------- */
+.pesan { display: none; margin-top: 6px; color: var(--error); font-size: 0.85rem; }
+
+:is(input, select, textarea):user-invalid { border-color: var(--error); }
+.field:has(:user-invalid) .pesan { display: block; }
+.grup:has(input:user-invalid) .pill span { border-color: var(--error); }
+.setuju:has(input:user-invalid) input { border-color: var(--error); }
+
+/* ---------- tombol ---------- */
+.aksi { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+
+button {
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.sekunder { background: var(--abu); color: var(--teks); }
+.sekunder:hover { background: #e4e4ed; }
+.utama { background: var(--lime); color: var(--teks); }
+.utama:hover { background: var(--lime-tua); }
+button:focus-visible { outline: 2px solid var(--teks); outline-offset: 2px; }
+
+/* ---------- mobile ---------- */
+@media (max-width: 520px) {
+  body { padding: 20px 12px; }
+  .kartu { padding: 28px 20px 24px; border-radius: 28px; }
+  h1 { font-size: 1.6rem; }
+  .baris { grid-template-columns: 1fr; gap: 22px; }
+  .aksi button { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pendaftaran Voluntir</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="kartu">
+
+    <p class="label">Bakti Masyarakat &amp; Gerakan Peduli Lingkungan</p>
+    <h1>Pendaftaran Voluntir</h1>
+    <p class="deskripsi">Ikut jaga lingkungan bersama kami. Isi data di bawah ini dengan benar agar panitia mudah menghubungimu.</p>
+
+    <form>
+
+      <!-- 1. NAMA LENGKAP (text) -->
+      <div class="field">
+        <label for="nama">Nama lengkap:</label>
+        <input type="text" id="nama" name="nama" required minlength="3" maxlength="60"
+               pattern="[A-Za-z .'\-]{3,60}" autocomplete="name" placeholder="pak ujang awor awor">
+        <small class="pesan">Isi 3–60 karakter, hanya huruf, spasi, titik, apostrof, atau strip.</small>
+      </div>
+
+      <div class="baris">
+        <!-- 1. NOMOR TELEPON (tel) -->
+        <div class="field">
+          <label for="hp">Nomor telepon:</label>
+          <input type="tel" id="hp" name="hp" required inputmode="numeric"
+                 pattern="(\+62|62|0)8[1-9][0-9]{7,10}" autocomplete="tel" placeholder="081234567890">
+          <small class="pesan">Gunakan nomor Indonesia berawalan 08, 62, atau +62 (10–13 digit).</small>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="field">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required maxlength="100"
+                 autocomplete="email" placeholder="nama@email.com">
+          <small class="pesan">Format email belum benar, contoh: nama@email.com.</small>
+        </div>
+      </div>
+
+      <!-- 2. DOMISILI (select) -->
+      <div class="field">
+        <label for="domisili">Kategori domisili / wilayah:</label>
+        <select id="domisili" name="domisili" required>
+          <option value="">Pilih wilayah</option>
+          <option value="ngawi-selatan">Ngawi Selatan</option>
+          <option value="ngawi-utara">Ngawi Utara</option>
+          <option value="mojokerto">Jomokerto</option>
+        </select>
+        <small class="pesan">Pilih wilayah domisilimu.</small>
+      </div>
+
+      <!-- 3. DIVISI (radio) -->
+      <fieldset class="field grup">
+        <legend>Pilihan divisi relawan:</legend>
+        <div class="pills">
+          <label class="pill"><input type="radio" name="divisi" value="logistik" required><span>Logistik</span></label>
+          <label class="pill"><input type="radio" name="divisi" value="humas"><span>Humas</span></label>
+          <label class="pill"><input type="radio" name="divisi" value="lapangan"><span>Lapangan</span></label>
+        </div>
+        <small class="pesan">Pilih salah satu divisi.</small>
+      </fieldset>
+
+      <!-- 4. KEAHLIAN / MINAT (checkbox grup) -->
+      <fieldset class="field grup">
+        <legend>Keahlian / minat khusus <span class="catatan">bisa pilih lebih dari 1</span>:</legend>
+        <div class="pills">
+          <label class="pill"><input type="checkbox" name="keahlian[]" value="dokumentasi"><span>Dokumentasi</span></label>
+          <label class="pill"><input type="checkbox" name="keahlian[]" value="p3k"><span>Pertolongan Pertama</span></label>
+          <label class="pill"><input type="checkbox" name="keahlian[]" value="mengajar"><span>Mengajar</span></label>
+          <label class="pill"><input type="checkbox" name="keahlian[]" value="desain"><span>Desain &amp; media sosial</span></label>
+          <label class="pill"><input type="checkbox" name="keahlian[]" value="konservasi"><span>Penghijauan</span></label>
+        </div>
+      </fieldset>
+
+      <!-- 5. MOTIVASI (textarea) -->
+      <div class="field">
+        <label for="motivasi">Motivasi bergabung:</label>
+        <textarea id="motivasi" name="motivasi" rows="4" required minlength="20" maxlength="300"
+                  placeholder="mis. Saya ingin ikut menjaga lingkungan sekitar dan belajar dari sesama relawan."></textarea>
+        <small class="pesan">Tulis minimal 20 karakter (maksimal 300).</small>
+      </div>
+
+      <!-- FILE UPLOAD -->
+      <div class="field">
+        <label for="berkas">Identitas relawan (KTP atau KTM):</label>
+        <input type="file" id="berkas" name="berkas" required
+               accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf">
+        <small class="catatan">Format JPG, PNG, atau PDF. Maksimal 2 MB.</small>
+        <small class="pesan">Pilih berkas berformat JPG, PNG, atau PDF.</small>
+      </div>
+
+      <!-- 6. PERSETUJUAN KOMITMEN (checkbox required) -->
+      <div class="field">
+        <label class="setuju">
+          <input type="checkbox" name="setuju" value="ya" required>
+          <span>Saya bersedia berkomitmen hadir sesuai jadwal dan mengikuti arahan koordinator selama kegiatan.</span>
+        </label>
+        <small class="pesan">Centang persetujuan komitmen untuk melanjutkan.</small>
+      </div>
+
+      <div class="aksi">
+        <button type="reset" class="sekunder">Reset</button>
+        <button type="submit" class="utama">Daftar</button>
+      </div>
+    </form>
+
+  </main>
+</body>
+</html>

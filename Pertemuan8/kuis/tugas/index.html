@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mari putar tanah | Pendaftaran Kelas Gerabah, Studio Kendi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="halaman">
+
+    <!-- ============ KIRI: judul ============ -->
+    <section class="kiri">
+      <p class="penanda">Studio Kendi</p>
+
+      <h1 aria-label="Mari putar tanah">
+        <span class="baris b1" aria-hidden="true">Mari</span>
+        <span class="baris b2" aria-hidden="true">putar</span>
+        <span class="baris b3" aria-hidden="true">tanah</span>
+
+        <!-- bola tanah liat di atas mangkuk yang dipotong melintang -->
+        <svg class="ornamen" viewBox="-10 -10 170 170" aria-hidden="true">
+          <g transform="rotate(24 75 80)">
+            <path d="M8 80 A67 67 0 0 0 142 80 Z" fill="none" stroke="currentColor" stroke-width="0.9"/>
+          </g>
+          <circle cx="42" cy="34" r="30" fill="#f1ebdf"/>
+        </svg>
+      </h1>
+
+      <p class="pengantar">Delapan pertemuan di depan roda putar. Kamu akan pulang membawa mangkuk yang agak miring, dan itu normal.</p>
+    </section>
+
+    <!-- ============ KANAN: form ============ -->
+    <section class="kanan">
+
+      <p class="penanda">Pendaftaran angkatan Desember 2026</p>
+
+      <form>
+
+        <!-- TEXT -->
+        <div class="field ambang">
+          <input type="text" id="nama" name="nama" placeholder=" " required minlength="3" maxlength="60"
+                 pattern="[A-Za-z .'\-]{3,60}" autocomplete="name">
+          <label class="label" for="nama">Nama lengkap</label>
+          <span class="bintang" aria-hidden="true">*</span>
+          <small class="pesan">Isi 3–60 karakter. Huruf, spasi, titik, apostrof, dan strip boleh.</small>
+        </div>
+
+        <div class="dua">
+          <!-- EMAIL -->
+          <div class="field ambang">
+            <input type="email" id="email" name="email" placeholder=" " required maxlength="100" autocomplete="email">
+            <label class="label" for="email">Email</label>
+            <span class="bintang" aria-hidden="true">*</span>
+            <small class="pesan">Alamat email belum lengkap, contoh: nama@email.com.</small>
+          </div>
+
+          <!-- TEL -->
+          <div class="field ambang">
+            <input type="tel" id="hp" name="hp" placeholder=" " required inputmode="numeric"
+                   pattern="(\+62|62|0)8[1-9][0-9]{7,10}" autocomplete="tel">
+            <label class="label" for="hp">Nomor HP</label>
+            <span class="bintang" aria-hidden="true">*</span>
+            <small class="pesan">Nomor Indonesia berawalan 08, 62, atau +62 (10–13 digit).</small>
+          </div>
+        </div>
+
+        <!-- SELECT -->
+        <div class="field ambang">
+          <select id="kelas" name="kelas" required>
+            <option value=""></option>
+            <option value="putar">Putar dasar: mangkuk dan cangkir</option>
+            <option value="pilin">Pilin dan lempeng, tanpa roda</option>
+            <option value="glasir">Glasir dan pembakaran</option>
+          </select>
+          <label class="label" for="kelas">Kelas yang dipilih</label>
+          <span class="bintang" aria-hidden="true">*</span>
+          <small class="pesan">Pilih salah satu kelas.</small>
+        </div>
+
+        <!-- RADIO -->
+        <fieldset class="field grup">
+          <legend class="label">Pengalaman dengan tanah liat <span class="bintang" aria-hidden="true">*</span></legend>
+          <div class="pilihan">
+            <label class="opsi"><input type="radio" name="pengalaman" value="belum" required> Belum pernah</label>
+            <label class="opsi"><input type="radio" name="pengalaman" value="sesekali"> Pernah beberapa kali</label>
+            <label class="opsi"><input type="radio" name="pengalaman" value="rutin"> Sudah rutin</label>
+          </div>
+          <small class="pesan">Pilih salah satu.</small>
+        </fieldset>
+
+        <!-- CHECKBOX (grup) -->
+        <fieldset class="field grup">
+          <legend class="label">Hari yang bisa kamu hadiri <span class="catatan">(boleh lebih dari satu)</span></legend>
+          <div class="pilihan">
+            <label class="opsi"><input type="checkbox" name="hari[]" value="sabtu-pagi"> Sabtu pagi</label>
+            <label class="opsi"><input type="checkbox" name="hari[]" value="sabtu-sore"> Sabtu sore</label>
+            <label class="opsi"><input type="checkbox" name="hari[]" value="minggu-pagi"> Minggu pagi</label>
+            <label class="opsi"><input type="checkbox" name="hari[]" value="selasa-malam"> Selasa malam</label>
+          </div>
+        </fieldset>
+
+        <!-- TEXTAREA -->
+        <div class="field ambang">
+          <textarea id="alasan" name="alasan" placeholder=" " rows="2" required minlength="20" maxlength="300"></textarea>
+          <label class="label" for="alasan">Kenapa ingin belajar gerabah?</label>
+          <span class="bintang" aria-hidden="true">*</span>
+          <small class="pesan">Tulis minimal 20 karakter (maksimal 300).</small>
+        </div>
+
+        <!-- FILE UPLOAD -->
+        <div class="field grup">
+          <label class="label" for="bukti">Bukti transfer <span class="bintang" aria-hidden="true">*</span></label>
+          <input type="file" id="bukti" name="bukti" required
+                 accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf">
+          <small class="catatan">JPG, PNG, atau PDF. Maksimal 2 MB.</small>
+          <small class="pesan">Unggah bukti transfer berformat JPG, PNG, atau PDF.</small>
+        </div>
+
+        <!-- CHECKBOX tunggal -->
+        <div class="field">
+          <label class="opsi setuju">
+            <input type="checkbox" name="setuju" value="ya" required>
+            Saya paham karya bisa retak atau pecah saat dibakar, dan saya akan hadir sesuai jadwal angkatan.
+          </label>
+          <small class="pesan">Centang untuk melanjutkan.</small>
+        </div>
+
+        <!-- 3 JENIS BUTTON: button, reset, submit -->
+        <div class="aksi">
+          <div class="sekunder">
+            <button type="button" class="teks" popovertarget="biaya">Rincian biaya</button>
+            <button type="reset" class="teks">Kosongkan</button>
+          </div>
+          <button type="submit" class="kirim">
+            Kirim
+            <svg viewBox="0 0 48 20" width="46" height="19" aria-hidden="true"><path d="M0 10h45M36 1l9 9-9 9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <footer class="alamat">
+        <div>
+          <h2>Studio</h2>
+          <p>Jl. Tanah Merah No. 7<br>Depok, Jawa Barat<br>0812-0000-0000</p>
+        </div>
+        <div>
+          <h2>Tanya-tanya</h2>
+          <p>halo@studiokendi.id<br>Senin sampai Jumat<br>10.00 – 17.00 WIB</p>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Popover tanpa JavaScript untuk tombol "Rincian biaya" -->
+  <div id="biaya" popover>
+    <h3>Biaya</h3>
+    <ul>
+      <li><span>Putar dasar, 8 pertemuan</span><b>Rp 1.350.000</b></li>
+      <li><span>Pilin dan lempeng, 6 pertemuan</span><b>Rp 1.150.000</b></li>
+      <li><span>Glasir dan pembakaran, 4 pertemuan</span><b>Rp 950.000</b></li>
+    </ul>
+    <p>Sudah termasuk 10 kg tanah liat dan satu kali pembakaran. Transfer ke rekening contoh 000-000-0000 a.n. Studio Kendi, lalu unggah buktinya di formulir.</p>
+    <button type="button" class="teks" popovertarget="biaya" popovertargetaction="hide">Tutup</button>
+  </div>
+</body>
+</html>

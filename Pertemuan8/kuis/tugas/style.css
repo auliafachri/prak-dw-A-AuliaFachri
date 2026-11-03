@@ -1,0 +1,307 @@
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("fonts/bodoni-moda-latin-opsz-normal.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #171717;
+  --krem: #f1ebdf;
+  --redup: rgb(241 235 223 / 0.6);
+  --garis: rgb(241 235 223 / 0.3);
+  --error: #ff8f78;
+  --cek: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='3.6' stroke-linecap='square'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --panah: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1ebdf' stroke-width='1.4'%3E%3Cpath d='M6 9.5l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--krem);
+  font: 400 14px/1.6 "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================= tata letak ================= */
+.halaman {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  column-gap: clamp(40px, 6vw, 104px);
+  min-height: 100vh;
+  padding: 48px clamp(24px, 4.5vw, 72px) 56px;
+}
+
+.kiri {
+  position: sticky;
+  top: 48px;
+  height: calc(100vh - 104px);
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kanan { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
+
+/* teks kecil bergaya label (dipakai berulang) */
+.penanda, .label {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--redup);
+}
+.penanda { color: var(--krem); }
+
+/* ================= judul ================= */
+h1 {
+  position: relative;
+  margin: 0;
+  font-family: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(4rem, 9.4vw, 10.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 26;   /* hairline lebih tebal agar tidak hilang di ukuran besar */
+}
+.baris { display: block; }
+.b2 { padding-left: 0.6em; }
+
+.ornamen {
+  position: absolute;
+  top: -0.3em;
+  left: 3.05em;
+  width: 1.3em;
+  height: 1.3em;
+  color: var(--krem);
+  overflow: visible;
+}
+
+.pengantar { margin: 0; max-width: 34ch; color: var(--redup); font-size: 15px; line-height: 1.6; }
+
+/* ================= form ================= */
+form { display: grid; gap: 34px; }
+.dua { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; }
+
+.field { position: relative; margin: 0; padding: 0; border: 0; min-width: 0; }
+
+/* ---- field bergaya reference: label duduk di garis, naik saat diisi ---- */
+.ambang { padding-top: 20px; }
+
+.ambang :is(input, select, textarea) {
+  display: block;
+  width: 100%;
+  padding: 6px 30px 10px 0;
+  background: transparent;
+  color: var(--krem);
+  border: 0;
+  border-bottom: 1px solid var(--garis);
+  border-radius: 0;
+  font: inherit;
+  font-size: 16px;
+  transition: border-color 0.15s;
+}
+.ambang textarea { min-height: 64px; resize: vertical; line-height: 1.5; }
+
+.ambang .label {
+  position: absolute;
+  left: 0;
+  top: 27px;
+  pointer-events: none;
+  transition: top 0.18s ease, color 0.18s;
+}
+.ambang :is(input, textarea):focus ~ .label,
+.ambang :is(input, textarea):not(:placeholder-shown) ~ .label,
+.ambang select:focus ~ .label,
+.ambang select:valid ~ .label { top: 0; }
+
+.ambang :is(input, select, textarea):focus ~ .label { color: var(--krem); }
+
+.bintang { position: absolute; right: 0; top: 29px; color: var(--redup); font-size: 13px; line-height: 1; pointer-events: none; }
+.grup .bintang { position: static; float: right; top: auto; }
+
+.ambang select {
+  appearance: none;
+  padding-right: 56px;
+  background: var(--panah) right 20px center / 18px no-repeat;
+  cursor: pointer;
+}
+.ambang select option { background: #222; color: var(--krem); }
+
+:is(input, select, textarea):focus-visible {
+  outline: 0;
+  border-bottom-color: var(--krem);
+  box-shadow: 0 1px 0 0 var(--krem);
+}
+
+/* ---- grup radio / checkbox / file ---- */
+.grup { padding-top: 0; }
+.grup > legend, .grup > .label:first-child { display: block; padding: 0; margin: 0 0 14px; float: none; width: 100%; }
+.catatan { font-size: 11.5px; font-weight: 400; letter-spacing: 0.02em; text-transform: none; color: var(--redup); }
+
+.pilihan { display: flex; flex-wrap: wrap; gap: 12px 30px; }
+
+.opsi { display: inline-flex; align-items: center; gap: 11px; margin: 0; font-size: 14px; cursor: pointer; }
+
+.opsi input {
+  appearance: none;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  background: transparent;
+  border: 1px solid rgb(241 235 223 / 0.6);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.opsi input[type="radio"] { border-radius: 50%; }
+.opsi input[type="radio"]:checked { background: var(--krem); border-color: var(--krem); box-shadow: inset 0 0 0 3.5px var(--bg); }
+.opsi input[type="checkbox"]:checked { background: var(--krem) var(--cek) center / 11px no-repeat; border-color: var(--krem); }
+.opsi input:focus-visible { outline: 1px solid var(--krem); outline-offset: 3px; border-bottom-color: inherit; box-shadow: none; }
+.opsi input[type="radio"]:checked:focus-visible { box-shadow: inset 0 0 0 3.5px var(--bg); }
+.opsi:hover input:not(:checked) { border-color: var(--krem); }
+
+.setuju { align-items: flex-start; color: var(--redup); font-size: 13px; line-height: 1.55; }
+.setuju input { margin-top: 3px; }
+
+/* upload */
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 0 0 12px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--garis);
+  border-radius: 0;
+  color: var(--redup);
+  font: inherit;
+  font-size: 13px;
+}
+input[type="file"]::file-selector-button {
+  margin-right: 14px;
+  padding: 7px 14px;
+  border: 1px solid var(--garis);
+  background: transparent;
+  color: var(--krem);
+  font: inherit;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+input[type="file"]::file-selector-button:hover { border-color: var(--krem); }
+small.catatan { display: block; margin-top: 8px; }
+
+/* ---- pesan error (CSS saja, lewat :user-invalid) ---- */
+.pesan { display: none; margin-top: 8px; color: var(--error); font-size: 12.5px; line-height: 1.4; }
+.field:has(:user-invalid) .pesan { display: block; }
+:is(input, select, textarea):user-invalid { border-bottom-color: var(--error); }
+.field:has(:user-invalid) .label { color: var(--error); }
+.opsi input:user-invalid { border-color: var(--error); }
+.field:has(:user-invalid) .bintang { color: var(--error); }
+
+/* ---- tombol ---- */
+.aksi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-top: 26px;
+  border-top: 1px solid var(--garis);
+}
+.sekunder { display: flex; gap: 28px; flex-wrap: wrap; }
+
+button { font: inherit; border-radius: 0; cursor: pointer; }
+
+.teks {
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: var(--redup);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--garis);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.teks:hover { color: var(--krem); text-decoration-color: var(--krem); }
+
+.kirim {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 0;
+  background: none;
+  border: 0;
+  color: var(--krem);
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+}
+.kirim svg { transition: transform 0.2s ease; }
+.kirim:hover svg { transform: translateX(8px); }
+
+button:focus-visible { outline: 1px solid var(--krem); outline-offset: 5px; }
+
+/* ---- alamat ---- */
+.alamat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: auto;
+  padding-top: 24px;
+  text-align: right;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.95;
+}
+.alamat h2 { margin: 0 0 18px; font-size: 11px; font-weight: 500; letter-spacing: 0.09em; }
+.alamat p { margin: 0; color: var(--redup); }
+
+/* ---- popover ---- */
+[popover] {
+  width: min(92vw, 440px);
+  padding: 32px;
+  background: var(--bg);
+  color: var(--krem);
+  border: 1px solid var(--garis);
+}
+[popover]::backdrop { background: rgb(0 0 0 / 0.65); }
+[popover] h3 { margin: 0 0 20px; font: 400 2.2rem/1 "Bodoni Moda", Georgia, serif; text-transform: uppercase; }
+[popover] ul { margin: 0 0 20px; padding: 0; list-style: none; }
+[popover] li { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--garis); font-size: 14px; }
+[popover] li b { font-weight: 500; white-space: nowrap; }
+[popover] p { margin: 0 0 22px; color: var(--redup); font-size: 13px; }
+
+/* ================= tablet / mobile ================= */
+@media (max-width: 960px) {
+  .halaman { display: block; padding: 28px 20px 40px; }
+  .kiri { position: static; height: auto; min-height: 0; gap: 40px; margin-bottom: 64px; }
+  h1 { font-size: clamp(3.8rem, 21vw, 7rem); }
+  .pengantar { font-size: 14px; }
+  .kanan { gap: 44px; }
+  .dua { grid-template-columns: 1fr; }
+  .kirim { font-size: 28px; }
+  .aksi { flex-wrap: wrap; }
+  .alamat { text-align: left; margin-top: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
